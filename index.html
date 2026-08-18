@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="支援雙人與電腦對戰的五子棋網頁遊戲">
+  <title>暖木五子棋 Gomoku</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <p class="eyebrow">A FAMILY BOARD GAME</p>
+      <h1>暖木五子棋 <span>Gomoku</span></h1>
+    </header>
+
+    <section class="toolbar" aria-label="遊戲設定">
+      <fieldset>
+        <legend>遊戲模式</legend>
+        <label><input type="radio" name="mode" value="local" checked> 雙人本機對戰</label>
+        <label><input type="radio" name="mode" value="ai"> 玩家對電腦</label>
+      </fieldset>
+      <div class="actions">
+        <button id="undoButton" type="button">悔棋</button>
+        <button id="restartButton" class="primary" type="button">重新開始</button>
+      </div>
+    </section>
+
+    <section class="game-layout">
+      <div class="board-card">
+        <canvas id="board" width="750" height="750" tabindex="0"
+          role="application" aria-label="15 乘 15 五子棋棋盤。使用方向鍵移動，Enter 或空白鍵落子。"></canvas>
+        <p class="keyboard-help">鍵盤：方向鍵移動位置，Enter／空白鍵落子</p>
+      </div>
+
+      <aside class="side-panel">
+        <section class="status-card">
+          <p class="section-label">遊戲狀態</p>
+          <div id="turnStone" class="turn-stone black" aria-hidden="true"></div>
+          <h2 id="status" aria-live="polite">黑棋回合</h2>
+          <p id="players">玩家一：黑棋　玩家二：白棋</p>
+          <p id="moveCount">已下 0 手</p>
+        </section>
+
+        <section class="music-card">
+          <p class="section-label">背景音樂</p>
+          <p class="track-name">He's a Pirate</p>
+          <audio id="music" loop preload="metadata">
+            <source src="assets/music/hes-a-pirate.wav" type="audio/wav">
+          </audio>
+          <button id="musicButton" type="button" aria-pressed="false">播放音樂</button>
+          <p id="musicMessage" class="hint" aria-live="polite">音樂需由你按下播放（約 68 秒，循環播放）。</p>
+        </section>
+
+        <section class="rules-card">
+          <p class="section-label">玩法</p>
+          <p>黑棋先手。率先在水平、垂直或斜線連成五顆以上的一方獲勝。</p>
+          <div class="legend"><span class="mini-stone black"></span> 黑棋　<span class="mini-stone white"></span> 白棋</div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="ai.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
